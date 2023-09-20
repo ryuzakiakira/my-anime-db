@@ -5,7 +5,7 @@ const Header = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   const searchBarHandler = () => {
-    setShowSearchBar(true);
+    setShowSearchBar(prevState => !prevState);
   };
 
   let search = (
