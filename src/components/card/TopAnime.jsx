@@ -3,10 +3,6 @@ import "./TopAnime.css";
 import Card from "./Card";
 
 const TopAnime = (props) => {
-  const synopsisHandler = () => {
-    props.onClick();
-  };
-
   return (
     <div className="anime-grid">
       {props.topAnime.map((anime) => (
@@ -16,7 +12,7 @@ const TopAnime = (props) => {
           rank={anime.rank}
           score={anime.score}
           img={anime.images.jpg.image_url}
-          onClick={synopsisHandler}
+          onClick={() => props.onClick(anime)}
         />
       ))}
     </div>
