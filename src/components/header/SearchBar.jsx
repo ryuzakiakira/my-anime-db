@@ -1,10 +1,6 @@
 const SearchBar = () => {
   return (
-      <input
-        type="search"
-        placeholder="Search"
-        className="input max-w-xs"
-      />
+    <input type="search" placeholder="Search" className="input max-w-xs" />
   );
 };
 
