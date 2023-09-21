@@ -5,6 +5,7 @@ const SearchBar = (props) => {
       onSubmit={(e) => {
         e.preventDefault();
         props.onSubmit(props.search);
+        props.resetSearch();
       }}
     >
       <input

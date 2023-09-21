@@ -30,6 +30,10 @@ function App() {
     getTopAnime();
   }, []);
 
+  const homePage = () => {
+    setAnimeList([])
+  }
+
   const searchBarHandler = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
@@ -61,6 +65,7 @@ function App() {
         onSearch={searchBarHandler}
         onSubmit={searchHandler}
         search={search}
+        onClick={homePage}
       />
       {animeList.length === 0 && (
         <AnimeList animeList={topAnime} onClick={showSynopsisHandler} />

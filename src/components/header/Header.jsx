@@ -32,9 +32,12 @@ const Header = (props) => {
     <div className="navbar bg-base-100 mb-9">
       <div className="navbar-start"></div>
       <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-3xl">
+        <button
+          className="btn btn-ghost normal-case text-3xl"
+          onClick={props.onClick}
+        >
           My<strong>Anime</strong>DB
-        </a>
+        </button>
       </div>
       <div className="navbar-end">
         {!showSearchBar && search}
@@ -42,6 +45,7 @@ const Header = (props) => {
           <SearchBar
             onSearch={props.onSearch}
             onSubmit={props.onSubmit}
+            resetSearch={searchBarHandler}
             search={props.search}
           />
         )}
