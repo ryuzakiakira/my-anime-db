@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 
-const Header = () => {
+const Header = (props) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   const searchBarHandler = () => {
-    setShowSearchBar(prevState => !prevState);
+    setShowSearchBar((prevState) => !prevState);
   };
 
   let search = (
@@ -37,7 +38,13 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         {!showSearchBar && search}
-        {showSearchBar && <SearchBar />}
+        {showSearchBar && (
+          <SearchBar
+            onSearch={props.onSearch}
+            onSubmit={props.onSubmit}
+            search={props.search}
+          />
+        )}
       </div>
     </div>
   );

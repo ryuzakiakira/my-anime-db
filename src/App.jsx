@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
-import TopAnime from "./components/card/TopAnime";
+import AnimeList from "./components/card/AnimeList";
 import PopUp from "./components/card/PopUp";
 
 function App() {
   const [topAnime, setTopAnime] = useState([]);
   const [synopsisIsShown, setSynopsisIsShown] = useState(false);
   const [selectedAnime, setSelectedAnime] = useState(null);
+  const [search, setSearch] = useState("");
+  const [animeList, setAnimeList] = useState([]);
 
   const showSynopsisHandler = (anime) => {
     setSynopsisIsShown(true);
@@ -28,7 +30,22 @@ function App() {
     getTopAnime();
   }, []);
 
-  console.log(topAnime);
+  const searchBarHandler = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const getAnime = async (query) => {
+    const temp = await fetch(
+      `https://api.jikan.moe/v4/anime?q=${query}&order_by=title&sort=asc&limit=15`
+    );
+    const anime = await temp.json();
+    setAnimeList(anime.data);
+  };
+
+  const searchHandler = (anime) => {
+    getAnime(anime);
+  };
 
   return (
     <>
@@ -40,8 +57,17 @@ function App() {
           onClose={hideSynopsisHandler}
         />
       )}
-      <Header />
-      <TopAnime topAnime={topAnime} onClick={showSynopsisHandler} />
+      <Header
+        onSearch={searchBarHandler}
+        onSubmit={searchHandler}
+        search={search}
+      />
+      {animeList.length === 0 && (
+        <AnimeList animeList={topAnime} onClick={showSynopsisHandler} />
+      )}
+      {animeList.length > 0 && (
+        <AnimeList animeList={animeList} onClick={showSynopsisHandler} />
+      )}
     </>
   );
 }

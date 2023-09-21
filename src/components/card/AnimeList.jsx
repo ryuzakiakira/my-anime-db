@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import "./TopAnime.css";
+import classes from "./AnimeList.module.css";
 import Card from "./Card";
 
-const TopAnime = (props) => {
+const AnimeList = (props) => {
   return (
-    <div className="anime-grid">
-      {props.topAnime.map((anime) => (
+    <div className={classes["anime-grid"]}>
+      {props.animeList.map((anime) => (
         <Card
           key={anime.mal_id}
           title={anime.title}
@@ -19,4 +19,4 @@ const TopAnime = (props) => {
   );
 };
 
-export default TopAnime;
+export default AnimeList;
